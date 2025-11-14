@@ -1,0 +1,24 @@
+name: YouTube Live to Facebook Live
+
+on:
+  workflow_dispatch:  # لتشغيله يدويًا
+  push:
+    branches:
+      - main
+
+jobs:
+  stream:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v3
+
+    - name: Install FFmpeg
+      run: |
+        sudo apt update
+        sudo apt install -y ffmpeg
+
+    - name: Start streaming
+      run: |
+        ffmpeg -re -i "https://manifest.googlevideo.com/api/manifest/hls_playlist/expire/1763170424/ei/GIQXab7qB6mCp-oPvZH40AU/ip/41.142.209.218/id/5yotCNlJhTA.1/itag/96/source/yt_live_broadcast/requiressl/yes/ratebypass/yes/live/1/sgoap/gir%3Dyes%3Bitag%3D140/sgovp/gir%3Dyes%3Bitag%3D137/rqh/1/hls_chunk_host/rr2---sn-p5h-4x1s.googlevideo.com/xpc/EgVo2aDSNQ%3D%3D/playlist_duration/30/manifest_duration/30/bui/AdEuB5RoVTz3wp179JyzmNNgNa31TsgMvcv3McGFXQGkIbBICAlzctiDVfrOuhQXtmuhhkbSIRgBZt1N/spc/6b0G_MvZUd66WmpMXkiW/vprv/1/playlist_type/DVR/cps/739/initcwndbps/657500/met/1763148825,/mh/JO/mm/44/mn/sn-p5h-4x1s/ms/lva/mv/m/mvi/2/pl/21/rms/lva,lva/dover/11/pacing/0/keepalive/yes/fexp/51552689,51565115,51565682,51580968,51626155/mt/1763148528/sparams/expire,ei,ip,id,itag,source,requiressl,ratebypass,live,sgoap,sgovp,rqh,xpc,playlist_duration,manifest_duration,bui,spc,vprv,playlist_type/sig/AJfQdSswRQIgBVnbczUQlNQUg_frVdmtINEaaw34vPT2borC0meswW0CIQDlQk_G40JjP3PDmpRkT48gCAKCenkhGt5cjSfmXXAS9Q%3D%3D/lsparams/hls_chunk_host,cps,initcwndbps,met,mh,mm,mn,ms,mv,mvi,pl,rms/lsig/APaTxxMwRQIhAJ881XFHt2SiMKUlO92Ar3W53R2YpZOApQ6AYyMy0wwkAiBzZT40lVDxSXchHxfzxOyfz0oq9GfjvStJ8S64RPvNVA%3D%3D/playlist/index.m3u8" -c copy -f flv "rtmps://live-api-s.facebook.com:443/rtmp/FB-1228054106036461-0-Ab1uJJUlw6MOBJ85PBqMD2db"
