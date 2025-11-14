@@ -1,0 +1,20 @@
+{
+  "name": "yt-dlp-api",
+  "version": "1.0.0",
+  "description": "API for fetching YouTube video information using yt-dlp",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "youtube",
+    "yt-dlp",
+    "api"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.1.0",
+    "yt-dlp-exec": "^1.0.2"
+  }
+}
